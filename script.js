@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         展示 Jellyfin 剧照（Show Jellyfin Extrafanarts via clicking）.
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.01
 // @description  Display Extrafanarts in a waterfall stream
 // @author       Apricity
 // @match        http://localhost:8096/web/*
@@ -10,7 +10,6 @@
 // @downloadURL https://update.greasyfork.org/scripts/483834/%E5%B1%95%E7%A4%BA%20Jellyfin%20%E5%89%A7%E7%85%A7%EF%BC%88Show%20Jellyfin%20Extrafanarts%20via%20clicking%EF%BC%89.user.js
 // @updateURL https://update.greasyfork.org/scripts/483834/%E5%B1%95%E7%A4%BA%20Jellyfin%20%E5%89%A7%E7%85%A7%EF%BC%88Show%20Jellyfin%20Extrafanarts%20via%20clicking%EF%BC%89.meta.js
 // ==/UserScript==
-
 
 (function () {
     'use strict';
@@ -97,5 +96,9 @@
                 waterfallContainer.style.top = `${rect.bottom + window.scrollY}px`;
             }
         }
+    });
+    // 阻止事件冒泡到mouseout事件
+    waterfallContainer.addEventListener('click', function (event) {
+        event.stopPropagation();
     });
 })();
